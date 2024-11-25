@@ -2,7 +2,7 @@
 This framework is an end to end automated test suite that tests the functionality of calculator component on Google. This framework is based on Selenium Webdriver, Java and TestNG. It can be customized to run the tests using different browsers.
 
 ## Prerequisites
-1. JDK version 11 or later must be installed
+1. JDK version 17 or later must be installed
 2. Maven latest version must be installed
 3. Configure JAVA_HOME and MAVEN_HOME
 
