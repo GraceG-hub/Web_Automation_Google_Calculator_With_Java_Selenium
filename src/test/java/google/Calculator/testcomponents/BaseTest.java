@@ -1,15 +1,23 @@
 package google.Calculator.testcomponents;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import google.Calculator.pageobjects.CalculationPage;
 import google.Calculator.pageobjects.SearchPage;
@@ -39,6 +47,22 @@ public class BaseTest {
 
 		driver.manage().window().maximize();
 		return driver;
+	}
+	
+	public List<HashMap<String, Integer>> getJsonDataToMap(String filePath) throws IOException {
+
+		// read json to string
+		String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
+
+		// Convert String to Hashmap using Jackson DataBind
+		ObjectMapper mapper = new ObjectMapper();
+
+		// Using the Object Mapper, we are reading the String value and convert that to List of Hashmaps
+		List<HashMap<String, Integer>> data = mapper.readValue(jsonContent,
+				new TypeReference<List<HashMap<String, Integer>>>() {
+				});
+		return data;
+
 	}
 	
 	@BeforeTest(alwaysRun = true)
