@@ -1,5 +1,7 @@
 package google.Calculator.pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +18,9 @@ public class CalculationPage extends AbstractComponents{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(xpath="//div[@class='XRsWPe AOvabd']")
+	List<WebElement> digits;
 	
 	@FindBy(xpath="//div[@jsname='bkEvMb']")
 	WebElement digitZero;
@@ -72,22 +77,21 @@ public class CalculationPage extends AbstractComponents{
 	WebElement result;
 	
 	
-	public String basicAddition() {
-		digitEight.click();
+	public int basicAddition(int num1, int num2) {
+		digits.stream().filter(digit->digit.getText().equals(String.valueOf(num1))).findFirst().orElse(null).click();
 		add.click();
-		digitFour.click();
+		digits.stream().filter(digit->digit.getText().equals(String.valueOf(num2))).findFirst().orElse(null).click();
 		equal.click();
-		return result.getText();
+		return Integer.parseInt(result.getText());
 		
 	}
 	
-	public String basicSubtraction() {
-		digitOne.click();
-		digitZero.click();
+	public int basicSubtraction(int num1, int num2) {
+		digits.stream().filter(digit->digit.getText().equals(String.valueOf(num1))).findFirst().orElse(null).click();
 		subtract.click();
-		digitThree.click();
+		digits.stream().filter(digit->digit.getText().equals(String.valueOf(num2))).findFirst().orElse(null).click();
 		equal.click();
-		return result.getText();
+		return Integer.parseInt(result.getText());
 	}
 	
 	public String basicMultiplication() {

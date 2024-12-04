@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests"  name="Suite">
+
+	<groups>
+		<run>
+			<include name="testdataset" />
+		</run>
+	</groups>
+	
+	<listeners>
+		<listener class-name="google.Calculator.testcomponents.Listeners"/>
+	</listeners>
+
+	<test thread-count="5" name="Calculator Basic Test">
+		<classes>
+			<class name="google.Calculator.tests.CalculatorBasicTest" />
+		</classes>
+	</test> <!--
+	Test -->
+
+	<test thread-count="5" name="Calculator Advanced Test">
+		<classes>
+			<class name="google.Calculator.tests.CalculatorAdvancedTest" />
+		</classes>
+	</test>
+	
+</suite> <!-- Suite -->
