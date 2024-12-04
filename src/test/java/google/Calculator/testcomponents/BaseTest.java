@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -76,6 +77,11 @@ public class BaseTest {
 	@AfterMethod(alwaysRun = true)
 	public void clearScreen() {
 		calcPage.clearScn();
+	}
+	
+	@AfterTest(alwaysRun = true)
+	public void tearDown() {
+		driver.quit();
 	}
 	
 
